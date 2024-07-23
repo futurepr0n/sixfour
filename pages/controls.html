@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SM64-JS - Controls</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="back" href="../">back</a>
+<h1 class="center">Play with Keyboard</h1>
+<hr></hr>
+<h3>Playing with a Keyboard is the easiest to set up but if you want the real deal then try using a Physical Nintendo 64 Controller.<br>
+Arrow Keys = Move<br>
+X Key = Jump, Read Dialouge, Select Option<br>
+C Key = Grab, Throw, Punch<br>
+W, A, S, D = Camera Controls<br>
+Spacebar = Crouch, Crawl, Ground Pound<br>
+Enter = Pause, Start</h3>
+<hr></hr>
+<h1 class="center">Play with Physical Nintendo 64 Controller</h1>
+<hr></hr>
+<h3>To play with a Physical Nintendo 64 Controller, You may need a <a href="https://www.walmart.com/ip/N64-Style-Wired-USB-Controller-for-PC-Mac-Grey/960393107">Controller that supports USB</a> or a <a href="https://www.walmart.com/ip/MAYFLASH-N64-Controller-Adapter-For-Pc/165694163">Nintendo 64 Controller Adapter</a>.</h3>
+<hr></hr>
+
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Array of background images
+        var backgrounds = [
+            '../assets/bg/9692191-super-mario-glitch.jpg',
+            '../assets/bg/9692206-nintendo-video-games-minimalistic-mario.jpg',
+            '../assets/bg/9692221-super-mario-64-game-100.jpg',
+            '../assets/bg/wp3621392-super-mario-64-wallpapers.png',
+            '../assets/bg/wp3621393-super-mario-64-wallpapers.jpg',
+            '../assets/bg/wp3621394-super-mario-64-wallpapers.jpg',
+            '../assets/bg/wp3621411-super-mario-64-wallpapers.jpg',
+            '../assets/bg/wp3621421-super-mario-64-wallpapers.jpg',
+            '../assets/bg/wp3621432-super-mario-64-wallpapers.jpg',
+            '../assets/bg/wp3621441-super-mario-64-wallpapers.jpg',
+            // Add more images as needed
+        ];
+    
+        // Select a random background image
+        var randomBackground = backgrounds[Math.floor(Math.random() * backgrounds.length)];
+    
+        // Set the background image of the body element
+        document.body.style.backgroundImage = 'url(' + randomBackground + ')';
+    });
+    </script>
+</html>

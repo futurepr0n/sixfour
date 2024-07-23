@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SM64-JS - Home</title>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1 class="center">SM64-JS</h1>
+<h2 class="center">Made by Chase Wickl(@jscraft) originally, and modified by futurepr0n</h2>
+<hr></hr>
+<h1 class="center">What is Super Mario 64?</h1>
+<hr></hr>
+<h3 class="center">Super Mario 64 is a 3D platformer game released for the Nintendo 64 in 1996 for Japan and North America and in 1997 for Europe and Australia. This game was one of two (three in Japan) launch titles for the Nintendo 64, along with Pilotwings 64, which helped drive initial sales of the console. Since its release, Super Mario 64 has been widely acclaimed as one of the greatest and most important games of all time.</h3>
+<hr></hr>
+
+<!-- Menu Items -->
+<div id="menu">
+    <a href="./start.html"><h1 tabindex="0">Start Game</h1></a><h1>|||</h1>
+    <a href="./pages/controls.html"><h1 tabindex="0">Game Controls</h1></a><h1>|||</h1>
+    <a href="./pages/faq.html"><h1 tabindex="0">Frequently Asked Questions</h1></a><h1>|||</h1>
+    <a href="./pages/mirrors.html"><h1 tabindex="0">Mirrors</h1></a><h1>|||</h1>
+    <a href="./credits.txt"><h1 tabindex="0">credit.txt</h1></a>
+</div>
+
+</body>
+
+<!-- Alerts -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Array of background images
+    var backgrounds = [
+        './assets/bg/9692191-super-mario-glitch.jpg',
+        './assets/bg/9692206-nintendo-video-games-minimalistic-mario.jpg',
+        './assets/bg/9692221-super-mario-64-game-100.jpg',
+        './assets/bg/wp3621392-super-mario-64-wallpapers.png',
+        './assets/bg/wp3621393-super-mario-64-wallpapers.jpg',
+        './assets/bg/wp3621394-super-mario-64-wallpapers.jpg',
+        './assets/bg/wp3621411-super-mario-64-wallpapers.jpg',
+        './assets/bg/wp3621421-super-mario-64-wallpapers.jpg',
+        './assets/bg/wp3621432-super-mario-64-wallpapers.jpg',
+        './assets/bg/wp3621441-super-mario-64-wallpapers.jpg',
+        // Add more images as needed
+    ];
+
+    // Select a random background image
+    var randomBackground = backgrounds[Math.floor(Math.random() * backgrounds.length)];
+
+    // Set the background image of the body element
+    document.body.style.backgroundImage = 'url(' + randomBackground + ')';
+
+// Navigation functionality
+const menuItems = document.querySelectorAll('#menu a h1');
+    let currentIndex = 0;
+
+    // Function to focus on the current menu item
+    function focusMenuItem(index) {
+        menuItems.forEach((item, i) => {
+            if (i === index) {
+                item.focus();
+            }
+        });
+    }
+
+    // Initial focus
+    focusMenuItem(currentIndex);
+
+    // Event listener for keydown events
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowRight') {
+            currentIndex = (currentIndex + 1) % menuItems.length;
+            focusMenuItem(currentIndex);
+        } else if (event.key === 'ArrowLeft') {
+            currentIndex = (currentIndex - 1 + menuItems.length) % menuItems.length;
+            focusMenuItem(currentIndex);
+        } else if (event.key === ' ' || event.key === 'Enter') {
+            menuItems[currentIndex].parentElement.click();
+        }
+    });
+});
+
+
+
+</script>
+</html>

@@ -1,0 +1,87 @@
+/* Font Setup */
+
+@font-face {
+    font-family: 'Mario64';
+    src: url('./assets/fonts/font.eot');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Mario64';
+    src: url('./assets/fonts/font.woff') format('woff'),
+        url('./assets/fonts/font.ttf') format('truetype'),
+        url('./assets/fonts/font.svg#Mario64') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Apply Fonts */
+
+h1, h2, h3, h4, h5, h6, p .black {
+  font-family: 'Mario64';
+  color: black;
+}
+
+h1, h2, h3, h4, h5, h6, p, .white, .back {
+  font-family: 'Mario64';
+  color: white;
+}
+
+/* Default Fonts */
+
+h1, h2, h3, h4, h5, h6, p {
+  font-family: 'Mario64';
+  color: white;
+}
+
+/* Set Background */
+
+body {
+  /* background-image: url("./assets/bg/9692191-super-mario-glitch.jpg"); */
+  background-size: cover; /* This will make the background image cover the entire element */
+  background-repeat: no-repeat; /* This will prevent the image from tiling */
+  background-position: center; /* This will center the image */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  height: 100vh; /* Ensure the body takes up the full viewport height */
+}
+
+/* Center Text */
+
+.center {
+  text-align: center;
+}
+
+/* Menu */
+
+#menu {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 150px;
+  padding: 50px;
+  border: 10px solid white;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5); /* Black background with 50% opacity */
+  border-radius: 10px; /* Optional: Rounds the corners of the div */
+}
+
+#menu a, #menu h1 {
+  margin: 0 10px; /* Adjust spacing between items */
+}
+
+#menu a h1:focus, #menu a h1:hover {
+  outline: 2px solid yellow; /* Highlight the focused or hovered item */
+  cursor: pointer; /* Change cursor to pointer */
+}
+
+/* Nav */
+
+.back {
+  display:block;
+  margin:auto;
+  text-align: center;
+  font-size: xx-large;
+}
