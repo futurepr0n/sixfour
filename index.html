@@ -29,102 +29,98 @@
 
 <!-- Alerts -->
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    // Array of background images
-    var backgrounds = [
-        './assets/bg/9692191-super-mario-glitch.jpg',
-        './assets/bg/9692206-nintendo-video-games-minimalistic-mario.jpg',
-        './assets/bg/9692221-super-mario-64-game-100.jpg',
-        './assets/bg/wp3621392-super-mario-64-wallpapers.png',
-        './assets/bg/wp3621393-super-mario-64-wallpapers.jpg',
-        './assets/bg/wp3621394-super-mario-64-wallpapers.jpg',
-        './assets/bg/wp3621411-super-mario-64-wallpapers.jpg',
-        './assets/bg/wp3621421-super-mario-64-wallpapers.jpg',
-        './assets/bg/wp3621432-super-mario-64-wallpapers.jpg',
-        './assets/bg/wp3621441-super-mario-64-wallpapers.jpg',
-        // Add more images as needed
-    ];
-
-    // Select a random background image
-    var randomBackground = backgrounds[Math.floor(Math.random() * backgrounds.length)];
-
-    // Set the background image of the body element
-    document.body.style.backgroundImage = 'url(' + randomBackground + ')';
-
-// Navigation functionality
-const menuItems = document.querySelectorAll('#menu a h1');
-    let currentIndex = 0;
-
-    // Function to focus on the current menu item
-    function focusMenuItem(index) {
-        menuItems.forEach((item, i) => {
-            if (i === index) {
-                item.focus();
+    document.addEventListener("DOMContentLoaded", function() {
+        // Array of background images
+        var backgrounds = [
+            './assets/bg/9692191-super-mario-glitch.jpg',
+            './assets/bg/background2.jpg',
+            './assets/bg/background3.jpg',
+            // Add more images as needed
+        ];
+    
+        // Select a random background image
+        var randomBackground = backgrounds[Math.floor(Math.random() * backgrounds.length)];
+    
+        // Set the background image of the body element
+        document.body.style.backgroundImage = 'url(' + randomBackground + ')';
+    
+        // Navigation functionality
+        const menuItems = document.querySelectorAll('#menu a h1');
+        let currentIndex = 0;
+    
+        // Function to focus on the current menu item
+        function focusMenuItem(index) {
+            menuItems.forEach((item, i) => {
+                if (i === index) {
+                    item.focus();
+                }
+            });
+        }
+    
+        // Initial focus
+        focusMenuItem(currentIndex);
+    
+        // Event listener for keydown events
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowRight') {
+                currentIndex = (currentIndex + 1) % menuItems.length;
+                focusMenuItem(currentIndex);
+            } else if (event.key === 'ArrowLeft') {
+                currentIndex = (currentIndex - 1 + menuItems.length) % menuItems.length;
+                focusMenuItem(currentIndex);
+            } else if (event.key === ' ' || event.key === 'Enter') {
+                menuItems[currentIndex].parentElement.click();
             }
         });
-    }
-
-    // Initial focus
-    focusMenuItem(currentIndex);
-
-    // Event listener for keydown events
-    document.addEventListener('keydown', (event) => {
-        if (event.key === 'ArrowRight') {
-            currentIndex = (currentIndex + 1) % menuItems.length;
-            focusMenuItem(currentIndex);
-        } else if (event.key === 'ArrowLeft') {
-            currentIndex = (currentIndex - 1 + menuItems.length) % menuItems.length;
-            focusMenuItem(currentIndex);
-        } else if (event.key === ' ' || event.key === 'Enter') {
-            menuItems[currentIndex].parentElement.click();
-        }
-    });
-
-
-    // Gamepad functionality
-    let gamepadIndex = null;
-
-    function handleGamepadInput() {
-        const gamepads = navigator.getGamepads();
-        if (gamepadIndex !== null) {
-            const gamepad = gamepads[gamepadIndex];
-            if (gamepad) {
-                const dpadRight = gamepad.buttons[15].pressed;
-                const dpadLeft = gamepad.buttons[14].pressed;
-                const select = gamepad.buttons[0].pressed; // Usually the "A" button on most controllers
-
-                if (dpadRight) {
-                    currentIndex = (currentIndex + 1) % menuItems.length;
-                    focusMenuItem(currentIndex);
-                } else if (dpadLeft) {
-                    currentIndex = (currentIndex - 1 + menuItems.length) % menuItems.length;
-                    focusMenuItem(currentIndex);
-                } else if (select) {
-                    menuItems[currentIndex].parentElement.click();
+    
+        // Gamepad functionality
+        let gamepadIndex = null;
+        let dpadRightPressed = false;
+        let dpadLeftPressed = false;
+        let selectPressed = false;
+    
+        function handleGamepadInput() {
+            const gamepads = navigator.getGamepads();
+            if (gamepadIndex !== null) {
+                const gamepad = gamepads[gamepadIndex];
+                if (gamepad) {
+                    const dpadRight = gamepad.buttons[15].pressed;
+                    const dpadLeft = gamepad.buttons[14].pressed;
+                    const select = gamepad.buttons[0].pressed; // Usually the "A" button on most controllers
+    
+                    if (dpadRight && !dpadRightPressed) {
+                        currentIndex = (currentIndex + 1) % menuItems.length;
+                        focusMenuItem(currentIndex);
+                    }
+                    dpadRightPressed = dpadRight;
+    
+                    if (dpadLeft && !dpadLeftPressed) {
+                        currentIndex = (currentIndex - 1 + menuItems.length) % menuItems.length;
+                        focusMenuItem(currentIndex);
+                    }
+                    dpadLeftPressed = dpadLeft;
+    
+                    if (select && !selectPressed) {
+                        menuItems[currentIndex].parentElement.click();
+                    }
+                    selectPressed = select;
                 }
             }
+            requestAnimationFrame(handleGamepadInput);
         }
-        requestAnimationFrame(handleGamepadInput);
-    }
-
-    window.addEventListener("gamepadconnected", (event) => {
-        gamepadIndex = event.gamepad.index;
-        console.log(`Gamepad connected at index ${gamepadIndex}: ${event.gamepad.id}.`);
-        requestAnimationFrame(handleGamepadInput);
+    
+        window.addEventListener("gamepadconnected", (event) => {
+            gamepadIndex = event.gamepad.index;
+            console.log(`Gamepad connected at index ${gamepadIndex}: ${event.gamepad.id}.`);
+            requestAnimationFrame(handleGamepadInput);
+        });
+    
+        window.addEventListener("gamepaddisconnected", (event) => {
+            console.log(`Gamepad disconnected from index ${event.gamepad.index}: ${event.gamepad.id}.`);
+            if (gamepadIndex === event.gamepad.index) {
+                gamepadIndex = null;
+            }
+        });
     });
-
-    window.addEventListener("gamepaddisconnected", (event) => {
-        console.log(`Gamepad disconnected from index ${event.gamepad.index}: ${event.gamepad.id}.`);
-        if (gamepadIndex === event.gamepad.index) {
-            gamepadIndex = null;
-        }
-    });
-});
-
-
-
-
-
-
-</script>
+    </script>
 </html>
