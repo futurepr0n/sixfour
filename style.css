@@ -73,8 +73,9 @@ body {
 }
 
 #menu a h1:focus, #menu a h1:hover {
-  outline: 2px solid yellow; /* Highlight the focused or hovered item */
+  outline: 2px solid white; /* Highlight the focused or hovered item */
   cursor: pointer; /* Change cursor to pointer */
+  background-color: rgba(0, 0, 0, 0.75); /* Black background with 50% opacity */
 }
 
 /* Nav */
